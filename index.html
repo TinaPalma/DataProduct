@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Course Project Power and Sample Size</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Course Project Power and Sample Size">
+  <meta name="author" content="Tina">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Course Project Power and Sample Size</h1>
+    <h2>Your Reproducible Pitch Presentation (27.09.2015)</h2>
+    <p>Tina<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>The data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Gathering data is not an easy task and you require to have the right amount. If the sample is too smal then your results are not very accurate enough but on the other hand if it is too large you can spend much time on that. This little application can tell you how much data you need to be sure about your results.
+We both know that to make sound decisions based on statistical analysis, you need to be sure you can trust your results. </p>
+
+<h2>What is the power?</h2>
+
+<p>The probability of not committing a Type II error is called the power of a hypothesis test.</p>
+
+<p>Effect Size
+To compute the power of the test, one offers an alternative view about the &quot;true&quot; value of the population parameter, assuming that the null hypothesis is false. The effect size is the difference between the true value and the value specified in the null hypothesis.</p>
+
+<p>Effect size = True value - Hypothesized value</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>T Distribution</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Calculating the power when using a t-test is similar to using a normal distribution. As I am assuming to work with a sample standard deviation, I would rather use the t-distribution. </p>
+
+<pre><code class="r">pwrTest &lt;- pwr.t.test(d = d, power = input$power, sig.level = 0.05,type=&quot;one.sample&quot;,alternative=input$var )
+</code></pre>
+
+<p>The probability that we make a type II error is 1 - power of the test = 10% (in this case)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How does the application work?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>By the default some figures are already set.
+You can modify it by changing: </p>
+
+<ul>
+<li>1. First of all,test either greater or two.sided</li>
+<li>2. The Null hypothesis and the alternative hypothesis</li>
+<li>3. The desired power and the standard deviation</li>
+<li>4. and finally ... Submit</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>onesamplemeans test=t 
+Test: greater
+H0: 850
+HA: 810
+Power: 0.9
+Standard deviation: 50</p>
+
+<pre><code class="r">delta &lt;- (850-810)/50 
+power &lt;-0.9
+pwrTest &lt;- pwr.t.test(d = delta, power = power, sig.level = 0.05,type=&quot;one.sample&quot;,alternative=&quot;greater&quot; )
+pwrTest
+</code></pre>
+
+<pre><code>## 
+##      One-sample t test power calculation 
+## 
+##               n = 14.84346
+##               d = 0.8
+##       sig.level = 0.05
+##           power = 0.9
+##     alternative = greater
+</code></pre>
+
+<p>Thank You!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='The data'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='T Distribution'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How does the application work?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Example'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
